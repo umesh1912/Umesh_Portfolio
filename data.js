@@ -1,56 +1,29 @@
 // Portfolio content. Copied from the Claude Design handoff (Portfolio v4).
 
+// Each case study opens as a full PDF; cover is the PDF's first page.
 const CASES = [
-  { num:'01', category:'Enterprise SaaS · Healthcare', title:'Claim Management Software', duration:'6 months',
-    summary:'End-to-end UX redesign of a complex insurance claim processing platform for healthcare providers, reducing claim rejection rates and accelerating reimbursement cycles.',
-    role:'Lead Product Designer + Scrum Master', platform:'Web app (desktop-first)', tools:'Figma · FigJam · Claude.ai · Storybook', shot:'claim workspace — hero screen',
-    metrics:[{v:'↓22%',l:'Claim rejection rate'},{v:'57%',l:'Faster submission time'},{v:'81',l:'CSAT score (was 54)'},{v:'96%',l:'Task completion rate'}],
-    problem:'Billing specialists faced a 34% claim rejection rate driven by coding errors, a fragmented 11-click submission workflow across 3 disconnected legacy screens, and zero real-time validation feedback, costing healthcare providers millions in delayed reimbursements annually.',
-    phases:[
-      {label:'Research',title:'Understanding the claims chaos',stats:[{v:'34%',l:'Avg. claim rejection'},{v:'11',l:'Clicks per submission'},{v:'3',l:'Disconnected screens'},{v:'0',l:'Real-time validation'}],tags:['12 interviews','40+ hrs transcripts','VOC analysis','Claude.ai synthesis'],shot:'insight clusters / affinity map',
-       body:'Conducted 12 stakeholder interviews with billing specialists, practice managers and insurance coordinators. Used Claude.ai to synthesise 40+ hours of interview transcripts into structured insight clusters. VOC analysis surfaced the top pain points: a 34% rejection rate due to coding errors, an 11-click multi-screen workflow, and no real-time validation feedback.'},
-      {label:'Define',title:'Framing the problem space',stats:[{v:'3',l:'User personas'},{v:'6',l:'Critical failure points'}],tags:['Journey mapping','HMW statements','Impact–effort matrix','Information architecture'],shot:'current-state journey map',
-       body:'Created 3 personas (Billing Specialist, Practice Manager, Compliance Officer) and mapped a current-state journey exposing 6 critical failure points. The design challenge: "How might we give billing teams real-time confidence at every step of a claim\'s lifecycle without requiring retraining?" Features were prioritised on an impact–effort matrix with product and engineering leads.'},
-      {label:'Design',title:'Redesigning the claim lifecycle',stats:[{v:'3→1',l:'Screens consolidated'},{v:'80+',l:'Components'}],tags:['Unified workspace','Real-time validation','Storybook docs','WCAG 2.1 AA'],shot:'unified workspace + inline code validator',
-       body:'Consolidated 3 legacy screens into a single claim workspace with a contextual sidebar. Designed an inline ICD/CPT code validator that flags errors before submission, and a claim timeline showing adjudication status at a glance. Claude.design and Figma Make generated layout alternatives quickly. Delivered a Figma design system of 80+ components documented in Storybook.'},
-      {label:'Prototype',title:'Interactive prototyping & stakeholder validation',stats:[{v:'5',l:'Core flows'},{v:'3',l:'Iteration rounds'}],tags:['Figma prototype','Lovable live demo','Batch processing','ERA reconciliation'],shot:'prototype flow — claim edit & resubmission',
-       body:'Built a high-fidelity Figma prototype covering 5 core flows: new claim entry, edit & resubmission, batch processing, ERA reconciliation and dashboard reporting. A Lovable coded prototype let executives use the real UI in a browser. Three rounds of review with product, engineering and compliance refined the status workflow and notifications.'},
-      {label:'Testing',title:'Usability testing & measurable impact',stats:[{v:'4.2→1.8',l:'Minutes per submission'},{v:'54→81',l:'CSAT'}],tags:['8 billing specialists','2 moderated sessions','Post-launch metrics'],shot:'before / after metrics dashboard',
-       body:'Moderated usability testing with 8 billing specialists across 2 sessions measured task completion, time-on-task and error rate. After launch, submission time dropped from 4.2 to 1.8 minutes, rejection fell 22 points in the first quarter, and CSAT rose from 54 to 81. The redesign became the foundation for a platform-wide design system rollout.'}]},
-  { num:'02', category:'E-commerce · Life Sciences', title:'E-commerce Platform for Life Science Products', duration:'8 months',
-    summary:'A dual-tier B2B purchasing experience for high-value laboratory instruments and low-value consumables, serving researchers, procurement managers and lab technicians.',
-    role:'Lead UX / Product Designer', platform:'Web responsive · B2B e-commerce', tools:'Figma · Claude.ai · Figma Make · Miro', shot:'adaptive product detail page',
-    metrics:[{v:'+31%',l:'Quote-to-order conversion'},{v:'+44%',l:'Repeat consumable orders'},{v:'61%',l:'Faster approval cycle'},{v:'4.6/5',l:'Usability score'}],
-    problem:'A life science distributor needed one B2B platform for two radically different buyers: researchers making 6-week, multi-stakeholder $500K instrument decisions, and lab technicians doing weekly $50 consumable replenishments. One UX couldn\'t serve both modes without breaking one.',
-    phases:[
-      {label:'Research',title:'Two buyer modes, one platform',stats:[{v:'15',l:'User interviews'},{v:'6 wks',l:'High-value cycle'},{v:'3–6',l:'Stakeholders per purchase'},{v:'2',l:'Buyer modes'}],tags:['Contextual inquiry','Claude.ai synthesis','Behaviour patterns'],shot:'buyer-mode research synthesis',
-       body:'Contextual inquiry with 15 research scientists, procurement officers and department heads. Claude.ai helped segment purchase behaviour by product tier. High-value purchases ($5K–$500K) involve 3–6 approvers and 2–8 week cycles, while consumables are reordered weekly by one technician. Two fundamentally different journeys had to live in one product.'},
-      {label:'Define',title:'Separating the two purchase journeys',stats:[{v:'4',l:'Personas'},{v:'9',l:'Design principles'}],tags:['Dual journey architecture','Quote request flow','Quick reorder flow'],shot:'considered vs quick-reorder journeys',
-       body:'Four personas: Researcher, Lab Tech, Procurement Officer and Department Head. A Considered Purchase Flow handles quotes, comparison and multi-approver sign-off; a Quick Reorder Flow offers saved lists, bulk add-to-cart and subscriptions. Nine design principles guided the dual-mode architecture.'},
-      {label:'Design',title:'A platform that knows what you\'re buying',stats:[{v:'12',l:'Grid variants explored'},{v:'120+',l:'Components'}],tags:['Adaptive PDP','Multi-approver checkout','Subscribe & save','Role-based UI'],shot:'high-value vs consumable PDP modes',
-       body:'An adaptive product page switches between High-Value Mode (spec tables, documents, comparison drawer, quote CTA, demo scheduling) and Consumable Mode (quantity, pack sizes, reorder history, subscribe-and-save). Checkout supports role-based states for requesters, approvers and budget holders. Figma Make generated 12 catalogue grid variants; 120+ components shipped.'},
-      {label:'Prototype',title:'Simulating both journeys at once',stats:[{v:'2',l:'Parallel prototypes'},{v:'3',l:'Iteration rounds'}],tags:['Scenario walkthroughs','Quote → PO flow','Express checkout'],shot:'parallel prototype flows',
-       body:'Two parallel Figma prototypes: browse → compare → quote → approval → PO, and saved list → bulk add → express checkout → subscription. Walkthroughs with a procurement manager and a lab technician side by side exposed conflicts in shared navigation, cart and account components.'},
-      {label:'Testing',title:'Validating across both buyer types',stats:[{v:'11',l:'Participants'},{v:'9→3.5',l:'Days to approve'}],tags:['Moderated testing','Post-launch tracking'],shot:'usability findings board',
-       body:'Separate rounds with 6 procurement/researcher profiles and 5 lab technicians. Fixes included a sticky comparison drawer, in-context approval email previews and clearer reorder-list styling. After launch, quote conversion rose 31%, repeat orders grew 44%, and approval time fell from 9 days to 3.5.'}]},
-  { num:'03', category:'AI Product · Life Sciences', title:'AI Agent for E-commerce Content Generation', duration:'5 months',
-    summary:'UX for an AI content agent that writes product titles, descriptions, spec tables and SEO metadata for 50,000+ life science SKUs, cutting content production time by 80%.',
-    role:'Lead Product Designer · AI Workflow Designer', platform:'Internal web tool · AI SaaS', tools:'Claude.ai · Figma · Figma Make · Lovable', shot:'split-panel AI content workspace',
-    metrics:[{v:'16×',l:'Content production speed'},{v:'71%',l:'AI acceptance rate'},{v:'12K',l:'SKUs cleared in month 1'},{v:'320',l:'SKUs per editor per day'}],
-    problem:'The platform had 50,000+ SKUs with incomplete or missing descriptions. At 20 descriptions per editor per day, full coverage would take 7 years. The challenge went beyond automation: editors had to trust AI output enough to use it rather than ignore it.',
-    phases:[
-      {label:'Research',title:'The content bottleneck',stats:[{v:'50K+',l:'SKUs needing content'},{v:'7 yrs',l:'Manual completion time'},{v:'20',l:'Descriptions / editor / day'},{v:'3',l:'Trust constraints'}],tags:['Stakeholder interviews','Claude.ai analysis','Trust framing'],shot:'content gap analysis',
-       body:'Interviews with content managers, catalogue editors and product owners, supported by Claude.ai transcript analysis, showed one editor produced about 20 quality descriptions a day. Three constraints emerged: scientific accuracy was non-negotiable, brand voice had to stay consistent, and editors needed to control AI content rather than simply accept it.'},
-      {label:'Define',title:'Designing for human–AI collaboration',stats:[{v:'3',l:'Personas'},{v:'4',l:'Workflow modes'}],tags:['Transparency','Control','Auditability','Approval gates'],shot:'human–AI collaboration model',
-       body:'Personas: Content Editor, Catalogue Manager and Product Owner. The question: "How might we make AI-generated content feel like a trusted first draft rather than a black box?" A principle-led framework of Transparency (confidence scores), Control (inline edits) and Auditability (track human vs AI edits) shaped four workflow modes, from single-item generation to gated publishing.'},
-      {label:'Design',title:'The AI content workspace',stats:[{v:'14',l:'Content field types'},{v:'100–500',l:'SKUs per batch'}],tags:['Split-panel workspace','Confidence indicators','Tone studio','Batch review grid'],shot:'confidence indicators + batch review grid',
-       body:'A split-panel workspace places raw product data on the left and live AI content on the right, with green/amber/red confidence per field and change tracking on every edit. A Tone & Template Studio lets brand managers feed voice rules into the prompt pipeline, and a Batch Review Grid triages hundreds of SKUs with accept/edit/reject.'},
-      {label:'Prototype',title:'Making AI feel tangible',stats:[{v:'Live',l:'Claude.ai API'},{v:'3',l:'Sprint cycles'}],tags:['Animated AI states','Lovable prototype','Real model output'],shot:'live prototype — generation states',
-       body:'A Figma prototype simulated typing states, confidence population and inline editing. A Lovable prototype connected to a real Claude.ai endpoint, so editors reacted to actual AI descriptions rather than mockups. As Scrum Master I folded engineering feasibility feedback into each of 3 sprint reviews.'},
-      {label:'Testing',title:'Building trust in AI content',stats:[{v:'10',l:'Content editors'},{v:'71%',l:'Acceptance (target 60%)'}],tags:['Trust Score KPI','2 testing rounds'],shot:'trust score results',
-       body:'Two rounds with 10 editors measured a Trust Score: how often AI output was accepted unedited. Editors initially distrusted amber fields even when correct, so the confidence tooltip was redesigned to explain the reason for each score. The final round reached 71% acceptance and 320 SKUs per editor per day, a 16× gain; 12,000 SKUs were cleared in the first month.'}]}
+  { client:'Techies4Tech.ai', category:'AI hiring platform', role:'Lead UX/UI Designer',
+    title:'Hiring tech talent on proven skill, not résumés',
+    summary:'An end-to-end hiring platform where AI interviews, evaluates and matches tech talent, so employers review evidence, not résumés. Redesigned from research to developer handoff for every role that touches a hire.',
+    metrics:[{v:'7',l:'User roles designed'},{v:'1,300+',l:'Frames & states in Figma'}],
+    cover:'img/case-t4t.jpg', pdf:'case-studies/Techies4Tech-UX-Case-Study.pdf' },
+  { client:'nTouch', category:'Hospitality SaaS · Web + mobile', role:'Lead UX/UI Designer',
+    title:'Running a hotel from one screen',
+    summary:'A cloud property management system for hotels and hotel groups in the GCC. I led research, UX and UI for the web platform and the companion mobile app, from the first stakeholder workshop to developer handoff.',
+    metrics:[{v:'−42%',l:'Time to complete a walk-in booking'},{v:'72%',l:'Of new hotels finish setup in one session'}],
+    cover:'img/case-ntouch.jpg', pdf:'case-studies/nTouch-PMS-Case-Study.pdf' },
+  { client:'meshIQ', category:'Enterprise platform · Messaging & streaming', role:'UX/UI Designer',
+    title:'One platform for data in motion',
+    summary:'Unifying Manage, Observe, Track and Control Center into a single, consistent meshIQ experience, with one URL, single sign-on, role-based access and a shared design system.',
+    metrics:[{v:'4→1',l:'Products unified into one platform'},{v:'1',l:'URL and sign-in with SSO'}],
+    cover:'img/case-meshiq.jpg', pdf:'case-studies/meshIQ-Platform-Redesign-Case-Study.pdf' },
+  { client:'Gardiant', category:"Workers' comp SaaS", role:'Sr. Product Designer · Scrum Master',
+    title:"Designing a single home for workers' comp claims",
+    summary:'End-to-end product design of a claims and case management platform for vocational counselors and Retro groups, from discovery and personas to a scalable design system, testing and developer delivery.',
+    metrics:[{v:'600+',l:'Firms and professionals on the platform'},{v:'1–2 hrs',l:'Saved per team member each day'}],
+    cover:'img/case-gardiant.jpg', pdf:'case-studies/Gardiant-Case-Study.pdf' }
 ];
-CASES.forEach(c => c.phases.forEach((p, i) => p.n = '0' + (i + 1)));
+CASES.forEach((c, i) => c.num = '0' + (i + 1));
 
 const W = (title, category, group, kind) => ({ title, category, group, kind });
 const WORK = [
@@ -99,7 +72,7 @@ const WRITING = [
 ];
 
 const EXPERIENCE = [
-  {dates:'Aug 2019 – Present',current:true,company:'Cayzen Technologies',role:'Sr. Product Designer · Scrum Master',project:'View project: GARDIANT ↗',href:'https://www.figma.com/file/jp2gdBmI86PdcbOpanwFUZ/ACE-iHUB-and-PUMAA',
+  {dates:'Aug 2019 – Present',current:true,company:'Cayzen Technologies',role:'Sr. Product Designer · Scrum Master',project:'Read the Gardiant case study ↗',href:'case-studies/Gardiant-Case-Study.pdf',
    points:['Lead product discovery sessions, stakeholder workshops and UX strategy planning.','Create scalable design systems, user stories, process flows, wireframes, prototypes and high-fidelity mockups.','Collaborate with product managers and engineers; contribute front-end in HTML5, CSS3, SCSS and React.','As Scrum Master, facilitate sprint planning, standups, retrospectives and backlog grooming.'],
    tags:['Claude.ai','Claude.design','Figma Make','Lovable','Storybook','Prompt engineering']},
   {dates:'Sep 2017 – Jul 2019',company:'Meditab Software',role:'Sr. UI/UX Designer & Web Designer',project:'View project: IMS / EHR ↗',href:'https://uxid.vercel.app/images/portfolio/website/9.jpg',
@@ -127,4 +100,3 @@ const ORDER = []; const byType = {}; GAL.forEach(g => (byType[g.type] = byType[g
 for (let i = 0; i < 25; i++) ['Web app','Mobile app','Website','Visual design'].forEach(t => byType[t][i] && ORDER.push(byType[t][i]));
 const GTYPES = ['All','Web app','Mobile app','Website','Visual design'];
 const GLABEL = { 'All':'All', 'Web app':'Web apps', 'Mobile app':'Mobile apps', 'Website':'Websites', 'Visual design':'Visual design' };
-const COVERS = ['img/web-10.jpg','img/web-11.jpg','img/web-12.jpg'];

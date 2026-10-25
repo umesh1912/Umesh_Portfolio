@@ -1,9 +1,9 @@
-// Renders the portfolio pages from data.js. Routes: #/ (home), #/case/1..3, #/about.
+// Renders the portfolio pages from data.js. Routes: #/ (home) and #/about. Case studies open as PDFs.
 (() => {
   // Testimonials and Writing hold placeholder copy; switch on once real content is in data.js.
   const SHOW_PLACEHOLDERS = false;
   const STORE_KEY = 'ua-portfolio-v4';
-  const PAGE_SIZE = 9;
+  const PAGE_SIZE = 12;
 
   const app = document.getElementById('app');
   const themeBtn = document.getElementById('theme-toggle');
@@ -27,13 +27,8 @@
 
   // ---------- Routing ----------
   function parseRoute() {
-    const m = location.hash.match(/^#\/(case\/(\d+)|about)?\/?$/);
-    if (!m || !m[1]) return { page: 'home' };
-    if (m[1] === 'about') return { page: 'about' };
-    const idx = Number(m[2]) - 1;
-    return CASES[idx] ? { page: 'case', caseIdx: idx } : { page: 'home' };
+    return { page: /^#\/about\/?$/.test(location.hash) ? 'about' : 'home' };
   }
-  let lastCaseIdx = 0;
 
   function scrollToAnchor(anchor, smooth) {
     const el = anchor && document.getElementById(anchor);
@@ -50,7 +45,7 @@
 
   const NAV_TARGETS = {
     work: () => go('#/', 'work'),
-    cases: () => go('#/case/' + (lastCaseIdx + 1)),
+    cases: () => go('#/', 'cases'),
     process: () => go('#/', 'process'),
     services: () => go('#/', 'services'),
     about: () => go('#/about'),
@@ -143,19 +138,19 @@
 
     <section id="cases" class="section">
       ${sectionHead('01 · Case studies', 'Deep dives into problems worth solving',
-        '<p class="section-note">From research to measurable results, in healthcare and life-science products.</p>', 'section-head--split')}
-      ${map(CASES, (c, i) => `
-        <a class="case-card" href="#/case/${i + 1}">
+        '<p class="section-note">AI hiring, hospitality, enterprise data and workers&#39; comp. Each opens as the full case study PDF.</p>', 'section-head--split')}
+      ${map(CASES, c => `
+        <a class="case-card" href="${c.pdf}" target="_blank" rel="noopener">
           <div class="case-card-body">
-            <div class="case-card-meta label"><span><b>${c.num}</b> · ${esc(c.category)}</span><span>${esc(c.duration)}</span></div>
+            <div class="case-card-meta label"><span><b>${c.num}</b> · ${esc(c.client)} · ${esc(c.category)}</span><span>${esc(c.role)}</span></div>
             <h3 class="case-card-title">${esc(c.title)}</h3>
             <p class="case-card-text">${esc(c.summary)}</p>
-            <div class="metric-pair">${map(c.metrics.slice(0, 2), m => `
+            <div class="metric-pair">${map(c.metrics, m => `
               <div class="metric-soft"><div class="metric-soft-value">${esc(m.v)}</div><div class="metric-soft-label">${esc(m.l)}</div></div>`)}
             </div>
-            <div class="case-card-cta">Read case study →</div>
+            <div class="case-card-cta">View case study in detail (PDF) ↗</div>
           </div>
-          <div class="case-card-media"><div class="media"><img src="${COVERS[i]}" alt="${esc(c.title)} cover" loading="lazy"></div></div>
+          <div class="case-card-media"><div class="media"><img src="${c.cover}" alt="${esc(c.client)} case study cover" loading="lazy"></div></div>
         </a>`)}
     </section>
 
@@ -218,52 +213,6 @@
     </section>` : ''}`;
   }
 
-  // ---------- Case study ----------
-  function casePage(idx) {
-    const cs = CASES[idx];
-    const next = CASES[(idx + 1) % CASES.length];
-    return `
-    <div class="case-tabs">
-      <button class="case-tab case-tab--back" data-go-cases>← All work</button>
-      ${map(CASES, (c, i) => `<a class="case-tab${i === idx ? ' is-active' : ''}" href="#/case/${i + 1}">${c.num} ${esc(c.title)}</a>`)}
-    </div>
-    <section class="page-intro">
-      <div class="eyebrow">Case study ${cs.num} · ${esc(cs.category)}</div>
-      <h1 class="page-title">${esc(cs.title)}</h1>
-      <p class="page-lede">${esc(cs.summary)}</p>
-    </section>
-    <section class="cells cells--row facts">
-      ${map([['Role', cs.role], ['Duration', cs.duration], ['Platform', cs.platform], ['Tools', cs.tools]],
-        ([l, v]) => `<div class="fact"><div class="label">${l}</div><div class="fact-value">${esc(v)}</div></div>`)}
-    </section>
-    <div class="case-hero"><div class="media"><img src="${COVERS[idx]}" alt="${esc(cs.title)}"></div></div>
-    <section class="cells cells--row metrics">
-      ${map(cs.metrics, m => `<div class="metric"><div class="metric-value">${esc(m.v)}</div><div class="metric-label">${esc(m.l)}</div></div>`)}
-    </section>
-    <section class="split-3">
-      <div class="problem-label eyebrow">The problem</div>
-      <p class="problem-text span-2">${esc(cs.problem)}</p>
-    </section>
-    ${map(cs.phases, ph => `
-    <article class="split-3">
-      <div class="phase-side">
-        <div class="phase-head"><span class="step-num">${ph.n}</span><span class="eyebrow eyebrow--subtle">${esc(ph.label)}</span></div>
-        <h3 class="phase-title">${esc(ph.title)}</h3>
-        <div class="phase-stats">${map(ph.stats, st => `
-          <div class="phase-stat"><div class="phase-stat-value">${esc(st.v)}</div><div class="phase-stat-label">${esc(st.l)}</div></div>`)}
-        </div>
-      </div>
-      <div class="phase-body span-2">
-        <p>${esc(ph.body)}</p>
-        ${tags(ph.tags, 'tag tag--outline')}
-      </div>
-    </article>`)}
-    <a class="next-case" href="#/case/${((idx + 1) % CASES.length) + 1}">
-      <div class="eyebrow">Next case study →</div>
-      <div class="next-case-title">${esc(next.title)}</div>
-    </a>`;
-  }
-
   // ---------- About ----------
   function aboutPage() {
     return `
@@ -317,16 +266,11 @@
   }
 
   // ---------- Render ----------
-  const NAV_ACTIVE = { home: 'work', case: 'cases', about: 'about' };
+  const NAV_ACTIVE = { home: 'work', about: 'about' };
 
   function render() {
     const route = parseRoute();
-    if (route.page === 'case') lastCaseIdx = route.caseIdx;
-
-    if (route.page === 'case') {
-      app.innerHTML = casePage(route.caseIdx);
-      document.title = CASES[route.caseIdx].title + ' · Umesh Anghan';
-    } else if (route.page === 'about') {
+    if (route.page === 'about') {
       app.innerHTML = aboutPage();
       document.title = 'About · Umesh Anghan';
     } else {
@@ -345,8 +289,7 @@
   app.addEventListener('click', e => {
     const chip = e.target.closest('[data-filter]');
     if (chip) { state.gFilter = chip.dataset.filter; state.gLimit = PAGE_SIZE; refreshGallery(); return; }
-    if (e.target.closest('[data-more]')) { state.gLimit += PAGE_SIZE; refreshGallery(); return; }
-    if (e.target.closest('[data-go-cases]')) go('#/', 'cases');
+    if (e.target.closest('[data-more]')) { state.gLimit += PAGE_SIZE; refreshGallery(); }
   });
 
   window.addEventListener('hashchange', render);
