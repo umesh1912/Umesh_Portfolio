@@ -67,11 +67,17 @@
     </div>`;
   const tags = (list, cls = 'tag') => list.length ? `<div class="tags">${map(list, t => `<span class="${cls}">${esc(t)}</span>`)}</div>` : '';
 
+  // Company icon from the site's favicon; falls back to the initial when there is no domain or it fails to load.
+  const logo = (name, domain, cls = 'logo') => {
+    const initial = `<span class="${cls} logo-initial">${esc(name[0])}</span>`;
+    return domain
+      ? `<img class="${cls}" src="https://www.google.com/s2/favicons?domain=${domain}&amp;sz=64" alt="" onerror="this.outerHTML=this.dataset.fallback" data-fallback="${esc(initial)}">`
+      : initial;
+  };
+
   // ---------- Home ----------
   function marquee() {
-    const item = c => `<span class="marquee-item">${LOGO_DOMAINS[c]
-      ? `<img src="https://www.google.com/s2/favicons?domain=${LOGO_DOMAINS[c]}&amp;sz=64" alt="" width="28" height="28" onerror="this.style.display='none'">`
-      : `<span class="marquee-initial">${esc(c[0])}</span>`}${esc(c)}</span>`;
+    const item = c => `<span class="marquee-item">${logo(c, LOGO_DOMAINS[c], 'logo logo--sm')}${esc(c)}</span>`;
     return `<div class="marquee-track">${map([...CLIENTS, ...CLIENTS], item)}</div>`;
   }
 
@@ -219,8 +225,9 @@
       <div class="about-copy">
         <div class="eyebrow">About me</div>
         <h1 class="about-title">Designing AI-powered products people <em>love</em> to use.</h1>
-        <p>I'm Umesh D. Anghan, a senior product designer based in Surat, India. I've spent 13+ years shaping digital products across healthcare, fintech, legal tech and enterprise.</p>
-        <p>These days I pair deep UX craft with Claude.ai, Figma Make, Lovable and prompt engineering, so products get built faster without losing their human feel. When I'm not designing, I'm usually e-painting or teaching and training other designers.</p>
+        <p>I'm Umesh D. Anghan, a senior AI-driven product designer based in Surat, India, with 13+ years of hands-on experience leading UX strategy and delivering web and mobile products for enterprise, healthcare and SaaS businesses.</p>
+        <p>My foundation is manual design craft: user research, user flows, wireframes, pixel-precise UI and design systems built from the ground up. On top of that I use an AI-first workflow with Claude.ai, Claude Design, Figma Make and Lovable to speed up research, ideation and prototyping. As Scrum Master I run design and delivery through a transparent process in ClickUp, with components documented in Storybook so design and code stay aligned.</p>
+        <p>Outside work I enjoy digital painting, and teaching and training other designers.</p>
         <div class="about-facts">
           ${map([['Based in', 'Surat, India'], ['Languages', 'English, Hindi, Gujarati'], ['Degree', 'B.Tech, Computer Eng.']],
             ([l, v]) => `<div><div class="label">${l}</div><div class="about-fact-value">${v}</div></div>`)}
@@ -234,15 +241,14 @@
       ${map(EXPERIENCE, e => `
       <article class="job">
         <div class="job-side">
-          <span class="job-dates">${esc(e.dates)}</span>
-          ${e.current ? '<span class="badge">CURRENT</span>' : ''}
+          <div class="job-head">${logo(e.company, e.domain, 'logo logo--lg')}<span class="job-dates">${esc(e.dates)}</span>${e.current ? '<span class="badge">CURRENT</span>' : ''}</div>
           <h3 class="job-company">${esc(e.company)}</h3>
           <div class="job-role">${esc(e.role)}</div>
+          ${e.domain ? `<a class="job-link" href="https://www.${e.domain}/" target="_blank" rel="noopener">View details ↗ <span>${esc(e.domain)}</span></a>` : ''}
         </div>
         <div class="job-body span-2">
           <ul>${map(e.points, p => `<li>${esc(p)}</li>`)}</ul>
           ${tags(e.tags)}
-          ${e.project ? `<div class="job-link"><a href="${esc(e.href)}" target="_blank" rel="noopener">${esc(e.project)}</a></div>` : ''}
         </div>
       </article>`)}
     </section>

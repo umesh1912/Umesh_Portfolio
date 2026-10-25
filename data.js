@@ -71,16 +71,35 @@ const WRITING = [
   {type:'Talk / workshop',title:'Talk or training session title — add link'}
 ];
 
+// Roles and responsibilities follow the CV (Umesh-Anghan-CV.pdf). `domain` drives the logo and the website link.
 const EXPERIENCE = [
-  {dates:'Aug 2019 – Present',current:true,company:'Cayzen Technologies',role:'Sr. Product Designer · Scrum Master',project:'Read the Gardiant case study ↗',href:'case-studies/Gardiant-Case-Study.pdf',
-   points:['Lead product discovery sessions, stakeholder workshops and UX strategy planning.','Create scalable design systems, user stories, process flows, wireframes, prototypes and high-fidelity mockups.','Collaborate with product managers and engineers; contribute front-end in HTML5, CSS3, SCSS and React.','As Scrum Master, facilitate sprint planning, standups, retrospectives and backlog grooming.'],
-   tags:['Claude.ai','Claude.design','Figma Make','Lovable','Storybook','Prompt engineering']},
-  {dates:'Sep 2017 – Jul 2019',company:'Meditab Software',role:'Sr. UI/UX Designer & Web Designer',project:'View project: IMS / EHR ↗',href:'img/website-9.jpg',
-   points:['Designed responsive web applications and healthcare product interfaces.','Led UX strategy from requirement analysis through wireframing, prototyping and delivery.','Created assets for iOS, iPad and Android; delivered accessible, W3C-valid code.'],tags:[]},
-  {dates:'Mar 2015 – Aug 2017',company:'Matrix Comsec',role:'Sr. UI/UX Designer',project:'View project: COSEC Cloud ↗',href:'img/web-5.jpg',
-   points:['Designed enterprise web and desktop application interfaces.','Created wireframes, prototypes and interactive UI solutions.','Built front-end with HTML, CSS and Bootstrap alongside backend teams.'],tags:[]},
-  {dates:'Jun 2013 – Feb 2015',company:'Concept Securities',role:'Web & Graphics Designer',project:'',
-   points:['Designed web applications, landing pages and branding materials.','Delivered dynamic web content using HTML and CSS.'],tags:[]}
+  {dates:'Aug 2019 – Present',current:true,company:'Cayzen Technologies',domain:'cayzen.com',role:'Senior AI-Driven Product Designer · Scrum Master',
+   points:['Lead product discovery, stakeholder workshops and UX strategy, turning business goals and research insights into clear design requirements.',
+     'Design end-to-end user flows, wireframes and high-fidelity UI by hand in Figma for web and mobile products, from first sketch to final pixel.',
+     'Built the design system from the ground up: colour, typography and spacing tokens, components with variants, and usage guidelines, mirrored in Storybook with engineering.',
+     'Introduced an AI-first design workflow with Claude.ai, Claude Design, Figma Make and Lovable, shortening the path from idea to validated prototype.',
+     'Use Claude for research synthesis, persona creation, competitive analysis, UX copy, and first drafts of user stories and acceptance criteria.',
+     'Serve as Scrum Master for the product squad: facilitate sprint planning, daily stand-ups, sprint reviews and retrospectives, and remove blockers.',
+     'Set up and manage ClickUp workflows (sprints, backlogs, design-review statuses, docs and dashboards) for a transparent, process-oriented delivery pipeline.',
+     'Partner with product managers and engineers on usability and performance, and contribute front-end code in HTML5, CSS3, SCSS and React UI frameworks.'],
+   tags:['Figma','Claude.ai','Claude Design','Figma Make','Lovable','Storybook','ClickUp','Scrum']},
+  {dates:'Sep 2017 – Jul 2019',company:'Meditab',domain:'meditab.com',role:'Senior UI/UX Designer & Web Designer',
+   points:['Designed and developed responsive web applications and healthcare product interfaces.',
+     'Led UX from requirements analysis through user flows, wireframes and prototypes to final delivery.',
+     'Created UI assets for iOS, iPad and Android applications.',
+     'Wrote standards-compliant code with a focus on accessibility, SEO and W3C validation.',
+     'Conducted performance and usability testing, and managed analytics, cookie compliance and client coordination.'],
+   tags:['Healthcare','iOS · iPad · Android','Accessibility','SEO']},
+  {dates:'Mar 2015 – Aug 2017',company:'Matrix Comsec',domain:'matrixcomsec.com',role:'Senior UI/UX Designer',
+   points:['Designed and developed responsive web applications and enterprise dashboards.',
+     'Created UI/UX for desktop and mobile applications, from wireframes to interactive prototypes.',
+     'Worked with backend teams to ensure seamless front-end integration.'],
+   tags:['Enterprise dashboards','Desktop & mobile','Prototyping']},
+  {dates:'Jun 2013 – Feb 2015',company:'Concept Securities Pvt. Ltd.',role:'Web & Graphic Designer',
+   points:['Designed web applications, landing pages and brand materials for corporate clients.',
+     'Optimised graphics and layouts, and built dynamic web content with HTML and CSS.',
+     'Collaborated with marketing and development teams on implementation and testing.'],
+   tags:['Web design','Branding','HTML & CSS']}
 ];
 const TOOLS = [['Figma','Design & prototype'],['FigJam','Brainstorming'],['Claude.ai','AI-powered UX'],['Figma Make','AI iteration'],['Lovable','Live prototypes'],['Miro','Whiteboarding'],['Whimsical','Flows & maps'],['Photoshop','Image editing'],['Webflow','No-code web'],['Storybook','Component docs'],['Jira','Agile sprints'],['Git','Version control']].map(([name,use]) => ({name,use}));
 const EDUCATION = [
