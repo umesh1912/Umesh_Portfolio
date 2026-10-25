@@ -1,27 +1,27 @@
 // Portfolio content. Copied from the Claude Design handoff (Portfolio v4).
 
-// Each case study opens as a full PDF; cover is the PDF's first page.
+// Each case study opens as a full PDF.
 const CASES = [
   { client:'Techies4Tech.ai', category:'AI hiring platform', role:'Lead UX/UI Designer',
     title:'Hiring tech talent on proven skill, not résumés',
     summary:'An end-to-end hiring platform where AI interviews, evaluates and matches tech talent, so employers review evidence, not résumés. Redesigned from research to developer handoff for every role that touches a hire.',
     metrics:[{v:'7',l:'User roles designed'},{v:'1,300+',l:'Frames & states in Figma'}],
-    cover:'img/case-t4t.jpg', pdf:'case-studies/Techies4Tech-UX-Case-Study.pdf' },
+    pdf:'case-studies/Techies4Tech-UX-Case-Study.pdf' },
   { client:'nTouch', category:'Hospitality SaaS · Web + mobile', role:'Lead UX/UI Designer',
     title:'Running a hotel from one screen',
     summary:'A cloud property management system for hotels and hotel groups in the GCC. I led research, UX and UI for the web platform and the companion mobile app, from the first stakeholder workshop to developer handoff.',
     metrics:[{v:'−42%',l:'Time to complete a walk-in booking'},{v:'72%',l:'Of new hotels finish setup in one session'}],
-    cover:'img/case-ntouch.jpg', pdf:'case-studies/nTouch-PMS-Case-Study.pdf' },
+    pdf:'case-studies/nTouch-PMS-Case-Study.pdf' },
   { client:'meshIQ', category:'Enterprise platform · Messaging & streaming', role:'UX/UI Designer',
     title:'One platform for data in motion',
     summary:'Unifying Manage, Observe, Track and Control Center into a single, consistent meshIQ experience, with one URL, single sign-on, role-based access and a shared design system.',
     metrics:[{v:'4→1',l:'Products unified into one platform'},{v:'1',l:'URL and sign-in with SSO'}],
-    cover:'img/case-meshiq.jpg', pdf:'case-studies/meshIQ-Platform-Redesign-Case-Study.pdf' },
+    pdf:'case-studies/meshIQ-Platform-Redesign-Case-Study.pdf' },
   { client:'Gardiant', category:"Workers' comp SaaS", role:'Sr. Product Designer · Scrum Master',
     title:"Designing a single home for workers' comp claims",
     summary:'End-to-end product design of a claims and case management platform for vocational counselors and Retro groups, from discovery and personas to a scalable design system, testing and developer delivery.',
     metrics:[{v:'600+',l:'Firms and professionals on the platform'},{v:'1–2 hrs',l:'Saved per team member each day'}],
-    cover:'img/case-gardiant.jpg', pdf:'case-studies/Gardiant-Case-Study.pdf' }
+    pdf:'case-studies/Gardiant-Case-Study.pdf' }
 ];
 CASES.forEach((c, i) => c.num = '0' + (i + 1));
 
@@ -75,9 +75,9 @@ const EXPERIENCE = [
   {dates:'Aug 2019 – Present',current:true,company:'Cayzen Technologies',role:'Sr. Product Designer · Scrum Master',project:'Read the Gardiant case study ↗',href:'case-studies/Gardiant-Case-Study.pdf',
    points:['Lead product discovery sessions, stakeholder workshops and UX strategy planning.','Create scalable design systems, user stories, process flows, wireframes, prototypes and high-fidelity mockups.','Collaborate with product managers and engineers; contribute front-end in HTML5, CSS3, SCSS and React.','As Scrum Master, facilitate sprint planning, standups, retrospectives and backlog grooming.'],
    tags:['Claude.ai','Claude.design','Figma Make','Lovable','Storybook','Prompt engineering']},
-  {dates:'Sep 2017 – Jul 2019',company:'Meditab Software',role:'Sr. UI/UX Designer & Web Designer',project:'View project: IMS / EHR ↗',href:'https://uxid.vercel.app/images/portfolio/website/9.jpg',
+  {dates:'Sep 2017 – Jul 2019',company:'Meditab Software',role:'Sr. UI/UX Designer & Web Designer',project:'View project: IMS / EHR ↗',href:'img/website-9.jpg',
    points:['Designed responsive web applications and healthcare product interfaces.','Led UX strategy from requirement analysis through wireframing, prototyping and delivery.','Created assets for iOS, iPad and Android; delivered accessible, W3C-valid code.'],tags:[]},
-  {dates:'Mar 2015 – Aug 2017',company:'Matrix Comsec',role:'Sr. UI/UX Designer',project:'View project: COSEC Cloud ↗',href:'https://www.figma.com/design/B5x9cng6Mfigd1OOJh1INP/ntouch---shared',
+  {dates:'Mar 2015 – Aug 2017',company:'Matrix Comsec',role:'Sr. UI/UX Designer',project:'View project: COSEC Cloud ↗',href:'img/web-5.jpg',
    points:['Designed enterprise web and desktop application interfaces.','Created wireframes, prototypes and interactive UI solutions.','Built front-end with HTML, CSS and Bootstrap alongside backend teams.'],tags:[]},
   {dates:'Jun 2013 – Feb 2015',company:'Concept Securities',role:'Web & Graphics Designer',project:'',
    points:['Designed web applications, landing pages and branding materials.','Delivered dynamic web content using HTML and CSS.'],tags:[]}

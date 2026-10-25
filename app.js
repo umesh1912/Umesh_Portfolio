@@ -145,12 +145,11 @@
             <div class="case-card-meta label"><span><b>${c.num}</b> · ${esc(c.client)} · ${esc(c.category)}</span><span>${esc(c.role)}</span></div>
             <h3 class="case-card-title">${esc(c.title)}</h3>
             <p class="case-card-text">${esc(c.summary)}</p>
-            <div class="metric-pair">${map(c.metrics, m => `
-              <div class="metric-soft"><div class="metric-soft-value">${esc(m.v)}</div><div class="metric-soft-label">${esc(m.l)}</div></div>`)}
-            </div>
             <div class="case-card-cta">View case study in detail (PDF) ↗</div>
           </div>
-          <div class="case-card-media"><div class="media"><img src="${c.cover}" alt="${esc(c.client)} case study cover" loading="lazy"></div></div>
+          <div class="case-card-metrics">${map(c.metrics, m => `
+            <div class="metric-soft"><div class="metric-soft-value">${esc(m.v)}</div><div class="metric-soft-label">${esc(m.l)}</div></div>`)}
+          </div>
         </a>`)}
     </section>
 
