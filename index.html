@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Umesh Anghan · Product Designer</title>
+  <meta name="description" content="Umesh D. Anghan, senior product designer with 13+ years across healthcare, fintech, legal tech and enterprise.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23C94A12'/%3E%3Ctext x='50' y='62' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='30' fill='%23fff'%3EUA%3C/text%3E%3C/svg%3E">
+  <script>
+    // Apply the saved theme before first paint to avoid a flash.
+    try { var t = JSON.parse(localStorage.getItem('ua-portfolio-v4') || '{}').theme; if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300..800;1,400..600&family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="#/">
+    <img src="img/umesh.jpg" alt="">
+    <span>Umesh Anghan</span>
+  </a>
+  <nav class="site-nav" aria-label="Main">
+    <button class="nav-btn" data-go="work">Work</button>
+    <button class="nav-btn" data-go="cases">Case studies</button>
+    <button class="nav-btn" data-go="process">Process</button>
+    <button class="nav-btn" data-go="services">Services</button>
+    <button class="nav-btn" data-go="about">About</button>
+  </nav>
+  <div class="header-actions">
+    <button class="theme-btn" id="theme-toggle" aria-label="Toggle theme">☾ Dark</button>
+    <button class="talk-btn" data-go="contact">Let's talk ↗</button>
+  </div>
+</header>
+
+<div class="container">
+  <main id="app"></main>
+</div>
+
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="contact-main">
+      <div>
+        <div class="eyebrow">Get in touch</div>
+        <h2 class="contact-title">Have a product to design? Let's build it together.</h2>
+      </div>
+      <div>
+        <p class="contact-text">I'm open to senior product design roles, AI product collaborations and consulting.</p>
+        <a class="contact-mail" href="mailto:anghanumeshd8@gmail.com">anghanumeshd8@gmail.com ↗</a>
+      </div>
+    </div>
+    <div class="contact-links">
+      <a href="tel:+919427201756"><div class="contact-label">Phone</div><div class="contact-value">+91 94272 01756</div></a>
+      <a href="https://www.linkedin.com/in/umesh-anghan-99660167" target="_blank" rel="noopener"><div class="contact-label">LinkedIn</div><div class="contact-value">umesh-anghan ↗</div></a>
+      <a href="https://dribbble.com/Udanghan" target="_blank" rel="noopener"><div class="contact-label">Dribbble</div><div class="contact-value">@Udanghan ↗</div></a>
+      <a href="https://www.behance.net/udanghan" target="_blank" rel="noopener"><div class="contact-label">Behance</div><div class="contact-value">@udanghan ↗</div></a>
+      <a href="https://medium.com/@anghanumeshd8" target="_blank" rel="noopener"><div class="contact-label">Medium</div><div class="contact-value">@anghanumeshd8 ↗</div></a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <span>© 2026 Umesh D. Anghan · Product Designer</span>
+      <span>Designed with Claude.ai, Figma Make &amp; Lovable</span>
+    </div>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
