@@ -7,7 +7,7 @@
 
   const app = document.getElementById('app');
   const themeBtn = document.getElementById('theme-toggle');
-  const state = { gFilter: 'All', gLimit: PAGE_SIZE };
+  const state = { gFilter: 'All', gLimit: PAGE_SIZE, vFilter: 'All' };
   let pendingAnchor = null;
 
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -47,6 +47,7 @@
     work: () => go('#/', 'work'),
     cases: () => go('#/', 'cases'),
     process: () => go('#/', 'process'),
+    vibe: () => go('#/', 'vibe'),
     services: () => go('#/', 'services'),
     about: () => go('#/about'),
     contact: () => scrollToAnchor('contact', true)
@@ -106,6 +107,25 @@
       return `<button class="chip${state.gFilter === t ? ' is-active' : ''}" data-filter="${esc(t)}">${GLABEL[t]} <small>${count}</small></button>`;
     });
   }
+  function vibeChips() {
+    return map(VTYPES, t => {
+      const count = t === 'All' ? VIBE.length : VIBE.filter(v => v.type === t).length;
+      return `<button class="chip${state.vFilter === t ? ' is-active' : ''}" data-vfilter="${esc(t)}">${VLABEL[t]} <small>${count}</small></button>`;
+    });
+  }
+  function vibeCards() {
+    return map(VIBE.filter(v => state.vFilter === 'All' || v.type === state.vFilter), v => `
+        <article class="vibe">
+          <span class="label">${esc(v.type)}</span>
+          <h3>${esc(v.title)}</h3>
+          <p>${esc(v.desc)}</p>
+          ${v.href ? `<a class="vibe-link" href="${esc(v.href)}" target="_blank" rel="noopener">Open prototype ↗</a>` : '<span class="vibe-note">Flutter app · demo on request</span>'}
+        </article>`);
+  }
+  function refreshVibe() {
+    document.getElementById('vibe-filters').innerHTML = vibeChips();
+    document.getElementById('vibe-slot').innerHTML = vibeCards();
+  }
   function refreshGallery() {
     document.getElementById('gallery-filters').innerHTML = filterChips();
     document.getElementById('gallery-slot').innerHTML = gallery();
@@ -128,7 +148,7 @@
         </div>
         <div class="portrait">
           <img src="img/umesh.jpg" alt="Umesh D. Anghan">
-          <div class="portrait-tags"><span>UX Strategy</span><span>Design Systems</span><span>AI Workflows</span></div>
+          <div class="portrait-tags"><span>UX Strategy</span><span>Design Systems</span><span>AI Workflows</span><span>Vibe Coding</span></div>
         </div>
       </div>
       <div class="cells cells--row stats">
@@ -171,8 +191,15 @@
       </div>
     </section>
 
+    <section id="vibe" class="section">
+      ${sectionHead('03 · Vibe coding', 'Ideas I\'ve built into working apps with Claude',
+        '<div class="filters" id="vibe-filters"></div>', 'section-head--split section-head--tight')}
+      <p class="vibe-intro">Mobile apps, healthcare platforms and a game, taken from a prompt to a clickable prototype with Claude. Each one is a real, working interface, not a static mockup.</p>
+      <div class="cells vibes" id="vibe-slot"></div>
+    </section>
+
     <section id="services" class="section">
-      ${sectionHead('03 · Services', 'How I can help your team')}
+      ${sectionHead('04 · Services', 'How I can help your team')}
       <div class="cells services">${map(SERVICES, s => `
         <div class="service">
           <span class="service-num">${s.n}</span>
@@ -184,7 +211,7 @@
     </section>
 
     <section id="process" class="section">
-      ${sectionHead('04 · Process', 'Five steps, with AI speeding up the slow parts')}
+      ${sectionHead('05 · Process', 'Five steps, with AI speeding up the slow parts')}
       <div class="cells steps">${map(PROCESS, s => `
         <div class="step">
           <span class="step-num">${s.n}</span>
@@ -197,7 +224,7 @@
 
     ${SHOW_PLACEHOLDERS ? `
     <section id="testimonials" class="section">
-      ${sectionHead('05 · Kind words', 'What collaborators say')}
+      ${sectionHead('06 · Kind words', 'What collaborators say')}
       <div class="cells quotes">${map(TESTIMONIALS, t => `
         <figure class="quote">
           <span class="quote-mark">“</span>
@@ -207,7 +234,7 @@
       </div>
     </section>
     <section id="writing" class="section">
-      ${sectionHead('06 · Writing &amp; talks', 'Notes on AI-augmented design',
+      ${sectionHead('07 · Writing &amp; talks', 'Notes on AI-augmented design',
         '<a href="https://medium.com/@anghanumeshd8" target="_blank" rel="noopener" style="font:700 14px var(--sans)">All articles on Medium ↗</a>', 'section-head--split section-head--tight')}
       ${map(WRITING, w => `
         <a class="writing-row" href="https://medium.com/@anghanumeshd8" target="_blank" rel="noopener">
@@ -281,6 +308,7 @@
     } else {
       app.innerHTML = homePage();
       refreshGallery();
+      refreshVibe();
       document.title = 'Umesh Anghan · Product Designer';
     }
 
@@ -294,6 +322,8 @@
   app.addEventListener('click', e => {
     const chip = e.target.closest('[data-filter]');
     if (chip) { state.gFilter = chip.dataset.filter; state.gLimit = PAGE_SIZE; refreshGallery(); return; }
+    const vchip = e.target.closest('[data-vfilter]');
+    if (vchip) { state.vFilter = vchip.dataset.vfilter; refreshVibe(); return; }
     if (e.target.closest('[data-more]')) { state.gLimit += PAGE_SIZE; refreshGallery(); }
   });
 

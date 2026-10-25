@@ -248,6 +248,17 @@ h1 em, h2 em { color: var(--accent); font-style: italic; font-weight: 600; }
 .figma-link span { color: var(--subtle); font-weight: 400; }
 .figma-link:hover { border-color: var(--accent); color: var(--accent); }
 
+/* ---------- Home: vibe coding ---------- */
+.vibe-intro { margin: -16px 0 0; padding: 0 var(--gutter) 32px; max-width: 760px; font-size: 14px; line-height: 1.55; color: var(--muted); }
+.vibes { grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); }
+.vibe { padding: 28px var(--gutter) 30px; display: flex; flex-direction: column; gap: 10px; }
+.vibe:hover { background: var(--surface); }
+.vibe h3 { margin: 0; font-size: 22px; line-height: 1.15; }
+.vibe p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--muted); text-wrap: pretty; }
+.vibe-link { margin-top: auto; padding-top: 6px; font: 700 14px var(--sans); color: var(--accent); }
+.vibe-link:hover { color: var(--accent-hover); }
+.vibe-note { margin-top: auto; padding-top: 6px; font-size: 13px; color: var(--subtle); }
+
 /* ---------- Home: services & process ---------- */
 .services { grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
 .service { padding: 32px var(--gutter) 36px; display: flex; flex-direction: column; gap: 12px; }
